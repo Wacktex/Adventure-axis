@@ -110,15 +110,73 @@ const NewsLinks = styled.div`
   }
 `;
 
+const NewsLinkItem = styled.div`
+  position: relative;
+  margin-right: 1.25rem;
+  
+  &:hover > div {
+    display: block;
+  }
+`;
+
 const NewsLink = styled.a`
   color: white;
   font-size: 0.875rem;
   transition: color 0.2s;
-  margin-right: 1.25rem;
+  display: inline-block;
+  padding: 0.25rem 0;
+  position: relative;
   
   &:hover {
     color: #ff5500;
   }
+  
+  &::after {
+    content: '▼';
+    font-size: 0.625rem;
+    margin-left: 0.375rem;
+    vertical-align: middle;
+    display: ${props => props.hasDropdown ? 'inline' : 'none'};
+    opacity: 0.8;
+  }
+`;
+
+const DropdownMenu = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  min-width: 200px;
+  display: none;
+  z-index: 100;
+  padding: 0.5rem 0;
+  animation: fadeIn 0.2s ease-in-out;
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+
+const DropdownLink = styled.a`
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #f7f7f7;
+    color: #ff5500;
+  }
+`;
+
+const DropdownDivider = styled.div`
+  height: 1px;
+  background-color: #eaeaea;
+  margin: 0.5rem 0;
 `;
 
 const MainNav = styled.div`
@@ -339,18 +397,105 @@ const Navbar = () => {
         </TrendingBarContent>
       </TrendingBar>
       
-      {/* News bar */}
+      {/* News bar with category dropdowns */}
       <NewsBar>
         <NewsBarContent>
           <NewsLinks>
-            <NewsLink href="#">Water Sport Gear</NewsLink>
-            <NewsLink href="#">Safety Rescue</NewsLink>
-            <NewsLink href="#">Tactical Eye Wear</NewsLink>
-            <NewsLink href="#">Footwear</NewsLink>
-            <NewsLink href="#">Clothing</NewsLink>
-            <NewsLink href="#">Camping & Outdoor</NewsLink>
-            <NewsLink href="#">HeadQuish Technologies</NewsLink>
-            <NewsLink href="#">Deals & Combos</NewsLink>
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Water Sport Gear</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">Life Jackets</DropdownLink>
+                <DropdownLink href="#">Wetsuits</DropdownLink>
+                <DropdownLink href="#">Paddle Boards</DropdownLink>
+                <DropdownLink href="#">Kayaks</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Safety Rescue</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">First Aid Kits</DropdownLink>
+                <DropdownLink href="#">Emergency Shelters</DropdownLink>
+                <DropdownLink href="#">Survival Tools</DropdownLink>
+                <DropdownLink href="#">Rescue Equipment</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Tactical Eye Wear</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">Sport Sunglasses</DropdownLink>
+                <DropdownLink href="#">Protective Eyewear</DropdownLink>
+                <DropdownLink href="#">Prescription Compatible</DropdownLink>
+                <DropdownLink href="#">Night Vision</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Footwear</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">Hiking Boots</DropdownLink>
+                <DropdownLink href="#">Trail Running Shoes</DropdownLink>
+                <DropdownLink href="#">Water Shoes</DropdownLink>
+                <DropdownLink href="#">Climbing Shoes</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Clothing</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">Men's Apparel</DropdownLink>
+                <DropdownLink href="#">Women's Apparel</DropdownLink>
+                <DropdownLink href="#">Kids' Clothing</DropdownLink>
+                <DropdownLink href="#">Outdoor Accessories</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Camping & Outdoor</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">Tents</DropdownLink>
+                <DropdownLink href="#">Sleeping Bags</DropdownLink>
+                <DropdownLink href="#">Backpacks</DropdownLink>
+                <DropdownLink href="#">Cooking Equipment</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>HeadQuish Technologies</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">GPS Devices</DropdownLink>
+                <DropdownLink href="#">Action Cameras</DropdownLink>
+                <DropdownLink href="#">Solar Chargers</DropdownLink>
+                <DropdownLink href="#">Adventure Watches</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
+            
+            <NewsLinkItem>
+              <NewsLink href="#" hasDropdown>Deals & Combos</NewsLink>
+              <DropdownMenu>
+                <DropdownLink href="#">Clearance</DropdownLink>
+                <DropdownLink href="#">Bundle Deals</DropdownLink>
+                <DropdownLink href="#">Seasonal Sales</DropdownLink>
+                <DropdownLink href="#">Gift Sets</DropdownLink>
+                <DropdownDivider />
+                <DropdownLink href="#">View All</DropdownLink>
+              </DropdownMenu>
+            </NewsLinkItem>
           </NewsLinks>
         </NewsBarContent>
       </NewsBar>
