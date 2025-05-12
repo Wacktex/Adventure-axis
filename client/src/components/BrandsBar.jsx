@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { 
-  SiNorthface, 
-  SiColumbia, 
-  SiPatagonia, 
-  SiSalomon, 
-  SiMarmot, 
+  SiThenorthface, 
   SiNike, 
-  SiPuma,
-  SiAdidas,
+  SiPuma, 
+  SiAdidas, 
+  SiBandcamp, 
+  SiSmart, 
+  SiFreecodecamp,
+  SiBasecamp,
   SiNewbalance,
   SiUnderarmour
 } from 'react-icons/si';
@@ -69,14 +69,14 @@ const BrandName = styled.span`
 
 const BrandsBar = () => {
   const brands = [
-    { name: 'WILEY X', icon: SiNorthface },
-    { name: 'SHRED', icon: SiSalomon },
-    { name: 'LAFUMA', icon: SiPatagonia },
-    { name: 'MILLET', icon: SiNike },
-    { name: 'ALPS MTN', icon: SiNorthface },
-    { name: 'PALM', icon: SiMarmot },
-    { name: 'PRINCETON', icon: SiPuma },
-    { name: 'CAMP', icon: SiAdidas },
+    { name: 'WILEY X', icon: SiThenorthface },
+    { name: 'SHRED', icon: SiNike },
+    { name: 'LAFUMA', icon: SiPuma },
+    { name: 'MILLET', icon: SiAdidas },
+    { name: 'ALPS MTN', icon: SiBandcamp },
+    { name: 'PALM', icon: SiSmart },
+    { name: 'PRINCETON', icon: SiFreecodecamp },
+    { name: 'CAMP', icon: SiBasecamp },
     { name: 'ROTHCO', icon: SiNewbalance },
     { name: 'HQ Tech', icon: SiUnderarmour }
   ];
