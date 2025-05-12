@@ -325,7 +325,7 @@ const SearchInput = styled.input`
 
 const SearchIconWrapper = styled.span`
   position: absolute;
-  left: ${props => props.isExpanded ? '0.75rem' : 'auto'};
+  left: ${props => props.$isExpanded ? '0.75rem' : 'auto'};
   color: #aaa;
   font-size: 1rem;
   display: flex;
@@ -353,6 +353,7 @@ const SearchToggle = styled.button`
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [searchExpanded, setSearchExpanded] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -362,13 +363,27 @@ const Navbar = () => {
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
     
+    // Add a click event listener to close dropdowns when clicking outside
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown-toggle') && !event.target.closest('.dropdown-menu')) {
+        setActiveDropdown(null);
+      }
+    };
+    
+    document.addEventListener('click', handleClickOutside);
+    
     return () => {
       window.removeEventListener('resize', checkScreenSize);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
   const toggleSearch = () => {
     setSearchExpanded(!searchExpanded);
+  };
+  
+  const toggleDropdown = (index) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
   };
 
   // News ticker content
@@ -402,8 +417,18 @@ const Navbar = () => {
         <NewsBarContent>
           <NewsLinks>
             <NewsLinkItem>
-              <NewsLink href="/category/water-sports" $hasDropdown>Water Sport Gear</NewsLink>
-              <DropdownMenu>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(0);
+                }} 
+                href="/category/water-sports" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Water Sport Gear
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 0} className="dropdown-menu">
                 <DropdownLink href="/category/water-sports/life-jackets">Life Jackets</DropdownLink>
                 <DropdownLink href="/category/water-sports/wetsuits">Wetsuits</DropdownLink>
                 <DropdownLink href="/category/water-sports/paddle-boards">Paddle Boards</DropdownLink>
@@ -414,86 +439,156 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>Safety Rescue</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">First Aid Kits</DropdownLink>
-                <DropdownLink href="#">Emergency Shelters</DropdownLink>
-                <DropdownLink href="#">Survival Tools</DropdownLink>
-                <DropdownLink href="#">Rescue Equipment</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(1);
+                }}
+                href="/category/safety-rescue" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Safety Rescue
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 1} className="dropdown-menu">
+                <DropdownLink href="/category/safety-rescue/first-aid">First Aid Kits</DropdownLink>
+                <DropdownLink href="/category/safety-rescue/shelters">Emergency Shelters</DropdownLink>
+                <DropdownLink href="/category/safety-rescue/tools">Survival Tools</DropdownLink>
+                <DropdownLink href="/category/safety-rescue/equipment">Rescue Equipment</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/safety-rescue">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>Tactical Eye Wear</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">Sport Sunglasses</DropdownLink>
-                <DropdownLink href="#">Protective Eyewear</DropdownLink>
-                <DropdownLink href="#">Prescription Compatible</DropdownLink>
-                <DropdownLink href="#">Night Vision</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(2);
+                }}
+                href="/category/eyewear" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Tactical Eye Wear
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 2} className="dropdown-menu">
+                <DropdownLink href="/category/eyewear/sunglasses">Sport Sunglasses</DropdownLink>
+                <DropdownLink href="/category/eyewear/protective">Protective Eyewear</DropdownLink>
+                <DropdownLink href="/category/eyewear/prescription">Prescription Compatible</DropdownLink>
+                <DropdownLink href="/category/eyewear/night-vision">Night Vision</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/eyewear">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>Footwear</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">Hiking Boots</DropdownLink>
-                <DropdownLink href="#">Trail Running Shoes</DropdownLink>
-                <DropdownLink href="#">Water Shoes</DropdownLink>
-                <DropdownLink href="#">Climbing Shoes</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(3);
+                }}
+                href="/category/footwear" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Footwear
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 3} className="dropdown-menu">
+                <DropdownLink href="/category/footwear/hiking-boots">Hiking Boots</DropdownLink>
+                <DropdownLink href="/category/footwear/running-shoes">Trail Running Shoes</DropdownLink>
+                <DropdownLink href="/category/footwear/water-shoes">Water Shoes</DropdownLink>
+                <DropdownLink href="/category/footwear/climbing-shoes">Climbing Shoes</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/footwear">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>Clothing</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">Men's Apparel</DropdownLink>
-                <DropdownLink href="#">Women's Apparel</DropdownLink>
-                <DropdownLink href="#">Kids' Clothing</DropdownLink>
-                <DropdownLink href="#">Outdoor Accessories</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(4);
+                }}
+                href="/category/clothing" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Clothing
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 4} className="dropdown-menu">
+                <DropdownLink href="/category/clothing/mens">Men's Apparel</DropdownLink>
+                <DropdownLink href="/category/clothing/womens">Women's Apparel</DropdownLink>
+                <DropdownLink href="/category/clothing/kids">Kids' Clothing</DropdownLink>
+                <DropdownLink href="/category/clothing/accessories">Outdoor Accessories</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/clothing">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>Camping & Outdoor</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">Tents</DropdownLink>
-                <DropdownLink href="#">Sleeping Bags</DropdownLink>
-                <DropdownLink href="#">Backpacks</DropdownLink>
-                <DropdownLink href="#">Cooking Equipment</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(5);
+                }}
+                href="/category/camping" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Camping & Outdoor
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 5} className="dropdown-menu">
+                <DropdownLink href="/category/camping/tents">Tents</DropdownLink>
+                <DropdownLink href="/category/camping/sleeping-bags">Sleeping Bags</DropdownLink>
+                <DropdownLink href="/category/camping/backpacks">Backpacks</DropdownLink>
+                <DropdownLink href="/category/camping/cooking">Cooking Equipment</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/camping">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>HeadQuish Technologies</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">GPS Devices</DropdownLink>
-                <DropdownLink href="#">Action Cameras</DropdownLink>
-                <DropdownLink href="#">Solar Chargers</DropdownLink>
-                <DropdownLink href="#">Adventure Watches</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(6);
+                }}
+                href="/category/tech" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                HeadQuish Technologies
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 6} className="dropdown-menu">
+                <DropdownLink href="/category/tech/gps">GPS Devices</DropdownLink>
+                <DropdownLink href="/category/tech/cameras">Action Cameras</DropdownLink>
+                <DropdownLink href="/category/tech/chargers">Solar Chargers</DropdownLink>
+                <DropdownLink href="/category/tech/watches">Adventure Watches</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/tech">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" $hasDropdown>Deals & Combos</NewsLink>
-              <DropdownMenu>
-                <DropdownLink href="#">Clearance</DropdownLink>
-                <DropdownLink href="#">Bundle Deals</DropdownLink>
-                <DropdownLink href="#">Seasonal Sales</DropdownLink>
-                <DropdownLink href="#">Gift Sets</DropdownLink>
+              <NewsLink 
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleDropdown(7);
+                }}
+                href="/category/deals" 
+                $hasDropdown 
+                className="dropdown-toggle"
+              >
+                Deals & Combos
+              </NewsLink>
+              <DropdownMenu $isOpen={activeDropdown === 7} className="dropdown-menu">
+                <DropdownLink href="/category/deals/clearance">Clearance</DropdownLink>
+                <DropdownLink href="/category/deals/bundles">Bundle Deals</DropdownLink>
+                <DropdownLink href="/category/deals/seasonal">Seasonal Sales</DropdownLink>
+                <DropdownLink href="/category/deals/gift-sets">Gift Sets</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/deals">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
           </NewsLinks>
@@ -524,14 +619,14 @@ const Navbar = () => {
           </LogoWrapper>
           
           <RightIconsContainer>
-            <SearchContainer>
+            <SearchContainer $isExpanded={searchExpanded}>
               {searchExpanded && (
                 <>
-                  <SearchIconWrapper isExpanded={searchExpanded}>
+                  <SearchIconWrapper $isExpanded={searchExpanded}>
                     <FaSearch />
                   </SearchIconWrapper>
                   <SearchInput 
-                    isExpanded={searchExpanded} 
+                    $isExpanded={searchExpanded} 
                     placeholder="Search products..." 
                     autoFocus
                   />

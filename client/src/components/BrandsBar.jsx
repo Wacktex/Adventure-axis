@@ -36,8 +36,8 @@ const ScrollButton = styled.button`
   background-color: rgba(255, 255, 255, 0.8);
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,16 +55,16 @@ const ScrollButton = styled.button`
   }
   
   &.left {
-    left: 5px;
+    left: 0;
   }
   
   &.right {
-    right: 5px;
+    right: 0;
   }
   
   @media (max-width: 768px) {
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
     font-size: 0.75rem;
   }
 `;
@@ -72,13 +72,14 @@ const ScrollButton = styled.button`
 const BrandList = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   overflow-x: auto;
   white-space: nowrap;
   gap: 2.5rem;
   padding: 0.5rem 0;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  margin: 0 40px;
   
   &::-webkit-scrollbar {
     height: 4px;
