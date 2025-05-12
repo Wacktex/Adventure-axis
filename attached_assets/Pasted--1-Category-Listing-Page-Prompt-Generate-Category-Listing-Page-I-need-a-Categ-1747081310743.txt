@@ -1,0 +1,87 @@
+## 1. Category & Listing Page Prompt
+
+> **Generate Category Listing Page**
+>
+> I need a **`CategoryPage.jsx`** in React with styled-components:
+>
+> 1. A **filter sidebar** on desktop (stacked above on mobile) containing:
+>
+>    * Price range slider
+>    * Brand checkboxes with logo icons
+>    * Ratings filter (stars)
+>    * Availability toggle (In Stock)
+>    * Variant selectors (size, color)—all filters update results in real time (no page reload) ([The Good][1], [Medium][2])
+> 2. A **products grid** showing unlimited items per page, paginated or infinite-scroll (infinite scroll preferred) ([Medium][3])
+> 3. Each **`ProductCard`** displays: image, title, price, variant badges, and “Add to Cart” button ([Nielsen Norman Group][4])
+> 4. Responsive layout: sidebar collapses into a top toggle on mobile; grid is 4-columns desktop, 2-columns tablet, 1-column phone ([WIRED][5])
+>
+> Please include: imports, styled-component definitions, React hooks for filtering state, and a mock `products` array.
+
+---
+
+## 2. Product Detail Page Prompt
+
+> **Generate Product Detail Page**
+>
+> Create **`ProductDetail.jsx`** with:
+>
+> 1. **Image gallery** carousel that supports swipe, lazy-loading, and thumbnails ([DhiWise][6])
+> 2. Title, price, “In Stock” status, rating stars, and dropdowns for each **variant** (size, color) ([Nielsen Norman Group][4])
+> 3. Quantity selector + “Add to Cart” button
+> 4. Tabs or accordion for “Description”, “Specifications”, and “Reviews”
+> 5. A “You May Also Like” horizontal **related products** scroller using `ProductCard` ([Nielsen Norman Group][4])
+>
+> Include styled-components, React state/hooks for variant selection, and placeholder gallery images.
+
+---
+
+## 3. Cart & Checkout Flow Prompt
+
+> **Generate Cart & Checkout Components**
+>
+> 1. **`CartPage.jsx`**
+>
+>    * List items: thumbnail, title, selected variants, editable quantity, subtotal
+>    * Coupon code input
+>    * Cart summary with “Proceed to Checkout” button ([Baymard Institute][7])
+> 2. **`CheckoutPage.jsx`**
+>
+>    * Guest vs. Sign-in toggle (guest checkout most prominent) ([Baymard Institute][7])
+>    * Billing/shipping form (name, address, phone, email)
+>    * Payment section integrated with **Razorpay**: show Pay button that triggers Razorpay checkout popup, handles success & error callbacks ([Medium][8])
+>    * Luhn-validate credit card fields if entered manually ([Baymard Institute][7])
+> 3. **`OrderConfirmation.jsx`**
+>
+>    * Thank you message, order summary, and order ID
+>    * “Back to Home” link
+
+---
+
+## 4. Authentication & Profile Prompt
+
+> **Generate Auth & Profile Pages**
+>
+> 1. **`AuthPage.jsx`** with two tabs: **Sign In** and **Register**
+>
+>    * Email, password fields; password strength meter
+>    * “Forgot Password?” link
+>    * Validation errors inline ([Baymard Institute][7])
+> 2. **`ProfilePage.jsx`** (basic for now; leave hooks for future social login)
+>
+>    * Display user name, email
+>    * Sections for “Past Orders” (list of order cards) and “Saved Addresses” (list) ([Supabase][9])
+>    * “Edit Profile” button
+>
+> Use styled-components, React context or state hooks for auth flow.
+
+
+## 5. Informational & Policy Pages Prompt
+
+> **Generate Static Info Pages**
+>
+> For each of these, create a simple styled-component page that reads content from a mock JSON:
+>
+> * **`AboutUs.jsx`**, **`Careers.jsx`**, **`Press.jsx`**
+> * **`PrivacyPolicy.jsx`**, **`Terms.jsx`**, **`RefundPolicy.jsx`**, **`ShippingPolicy.jsx`**
+> * **`ContactUs.jsx`** with a contact form (name, email, message)
+> * **`FAQ.jsx`** listing Q\&A accordions ([Baymard Institute][7])

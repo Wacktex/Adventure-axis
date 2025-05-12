@@ -136,7 +136,7 @@ const NewsLink = styled.a`
     font-size: 0.625rem;
     margin-left: 0.375rem;
     vertical-align: middle;
-    display: ${props => props.hasDropdown ? 'inline' : 'none'};
+    display: ${props => props.$hasDropdown ? 'inline' : 'none'};
     opacity: 0.8;
   }
 `;
@@ -402,19 +402,19 @@ const Navbar = () => {
         <NewsBarContent>
           <NewsLinks>
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Water Sport Gear</NewsLink>
+              <NewsLink href="/category/water-sports" $hasDropdown>Water Sport Gear</NewsLink>
               <DropdownMenu>
-                <DropdownLink href="#">Life Jackets</DropdownLink>
-                <DropdownLink href="#">Wetsuits</DropdownLink>
-                <DropdownLink href="#">Paddle Boards</DropdownLink>
-                <DropdownLink href="#">Kayaks</DropdownLink>
+                <DropdownLink href="/category/water-sports/life-jackets">Life Jackets</DropdownLink>
+                <DropdownLink href="/category/water-sports/wetsuits">Wetsuits</DropdownLink>
+                <DropdownLink href="/category/water-sports/paddle-boards">Paddle Boards</DropdownLink>
+                <DropdownLink href="/category/water-sports/kayaks">Kayaks</DropdownLink>
                 <DropdownDivider />
-                <DropdownLink href="#">View All</DropdownLink>
+                <DropdownLink href="/category/water-sports">View All</DropdownLink>
               </DropdownMenu>
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Safety Rescue</NewsLink>
+              <NewsLink href="#" $hasDropdown>Safety Rescue</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">First Aid Kits</DropdownLink>
                 <DropdownLink href="#">Emergency Shelters</DropdownLink>
@@ -426,7 +426,7 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Tactical Eye Wear</NewsLink>
+              <NewsLink href="#" $hasDropdown>Tactical Eye Wear</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">Sport Sunglasses</DropdownLink>
                 <DropdownLink href="#">Protective Eyewear</DropdownLink>
@@ -438,7 +438,7 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Footwear</NewsLink>
+              <NewsLink href="#" $hasDropdown>Footwear</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">Hiking Boots</DropdownLink>
                 <DropdownLink href="#">Trail Running Shoes</DropdownLink>
@@ -450,7 +450,7 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Clothing</NewsLink>
+              <NewsLink href="#" $hasDropdown>Clothing</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">Men's Apparel</DropdownLink>
                 <DropdownLink href="#">Women's Apparel</DropdownLink>
@@ -462,7 +462,7 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Camping & Outdoor</NewsLink>
+              <NewsLink href="#" $hasDropdown>Camping & Outdoor</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">Tents</DropdownLink>
                 <DropdownLink href="#">Sleeping Bags</DropdownLink>
@@ -474,7 +474,7 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>HeadQuish Technologies</NewsLink>
+              <NewsLink href="#" $hasDropdown>HeadQuish Technologies</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">GPS Devices</DropdownLink>
                 <DropdownLink href="#">Action Cameras</DropdownLink>
@@ -486,7 +486,7 @@ const Navbar = () => {
             </NewsLinkItem>
             
             <NewsLinkItem>
-              <NewsLink href="#" hasDropdown>Deals & Combos</NewsLink>
+              <NewsLink href="#" $hasDropdown>Deals & Combos</NewsLink>
               <DropdownMenu>
                 <DropdownLink href="#">Clearance</DropdownLink>
                 <DropdownLink href="#">Bundle Deals</DropdownLink>
