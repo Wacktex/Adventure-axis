@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { 
-  SiThenorthface, 
-  SiNike, 
-  SiPuma, 
-  SiAdidas, 
-  SiBandcamp, 
-  SiSmart, 
-  SiFreecodecamp,
-  SiBasecamp,
-  SiNewbalance,
-  SiUnderarmour
-} from 'react-icons/si';
+  FaMountain, 
+  FaHiking, 
+  FaWater, 
+  FaShoppingBag, 
+  FaCampground, 
+  FaSnowboarding, 
+  FaFish,
+  FaCompass,
+  FaTools,
+  FaShoppingCart
+} from 'react-icons/fa';
 
 const BrandBarContainer = styled.div`
   background-color: #f0f0f0;
@@ -69,30 +69,33 @@ const BrandName = styled.span`
 
 const BrandsBar = () => {
   const brands = [
-    { name: 'WILEY X', icon: SiThenorthface },
-    { name: 'SHRED', icon: SiNike },
-    { name: 'LAFUMA', icon: SiPuma },
-    { name: 'MILLET', icon: SiAdidas },
-    { name: 'ALPS MTN', icon: SiBandcamp },
-    { name: 'PALM', icon: SiSmart },
-    { name: 'PRINCETON', icon: SiFreecodecamp },
-    { name: 'CAMP', icon: SiBasecamp },
-    { name: 'ROTHCO', icon: SiNewbalance },
-    { name: 'HQ Tech', icon: SiUnderarmour }
+    { name: 'WILEY X', icon: FaMountain },
+    { name: 'SHRED', icon: FaHiking },
+    { name: 'LAFUMA', icon: FaWater },
+    { name: 'MILLET', icon: FaShoppingBag },
+    { name: 'ALPS MTN', icon: FaCampground },
+    { name: 'PALM', icon: FaSnowboarding },
+    { name: 'PRINCETON', icon: FaFish },
+    { name: 'CAMP', icon: FaCompass },
+    { name: 'ROTHCO', icon: FaTools },
+    { name: 'HQ Tech', icon: FaShoppingCart }
   ];
 
   return (
     <BrandBarContainer>
       <BrandBarContent>
         <BrandList>
-          {brands.map((brand, index) => (
-            <BrandLink key={index} href="#">
-              <BrandIcon>
-                <brand.icon />
-              </BrandIcon>
-              <BrandName>{brand.name}</BrandName>
-            </BrandLink>
-          ))}
+          {brands.map((brand, index) => {
+            const IconComponent = brand.icon;
+            return (
+              <BrandLink key={index} href="#">
+                <BrandIcon>
+                  <IconComponent />
+                </BrandIcon>
+                <BrandName>{brand.name}</BrandName>
+              </BrandLink>
+            );
+          })}
         </BrandList>
       </BrandBarContent>
     </BrandBarContainer>
