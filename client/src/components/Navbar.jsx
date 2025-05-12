@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BrandsBar from './BrandsBar';
+import { FaSearch, FaUser, FaShoppingCart, FaHeart, FaBars } from 'react-icons/fa';
 
 const NavContainer = styled.nav`
   width: 100%;
@@ -93,7 +94,7 @@ const NewsLinks = styled.div`
   white-space: nowrap;
   padding-bottom: 0.25rem;
   padding-right: 1rem;
-  max-width: 80%;
+  max-width: 100%;
   
   @media (min-width: 768px) {
     max-width: none;
@@ -131,25 +132,140 @@ const MainNavContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    & > * + * {
+      margin-top: 0.75rem;
+    }
+  }
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
   align-items: center;
 `;
 
 const Logo = styled.a`
   font-size: 1.875rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
 `;
 
-const LogoIcon = styled.span`
+const LogoImage = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #ff5500;
+  font-size: 1.5rem;
+  border: 2px solid #ff5500;
+  border-radius: 8px;
+  margin-right: 10px;
 `;
 
 const LogoText = styled.span`
   margin-left: 0.5rem;
+`;
+
+const NavIconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+`;
+
+const NavIcon = styled.a`
+  color: white;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  position: relative;
+  
+  &:hover {
+    color: #ff5500;
+  }
+`;
+
+const IconBadge = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff5500;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+`;
+
+const MobileMenuButton = styled.button`
+  display: none;
+  color: white;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-right: 0.75rem;
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const SearchContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const SearchInput = styled.input`
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  padding-left: 2.5rem;
+  color: white;
+  width: 200px;
+  font-size: 0.875rem;
+  
+  &::placeholder {
+    color: #aaa;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 85, 0, 0.5);
+  }
+`;
+
+const SearchIconWrapper = styled.span`
+  position: absolute;
+  left: 0.75rem;
+  color: #aaa;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
 `;
 
 const Navbar = () => {
@@ -213,10 +329,38 @@ const Navbar = () => {
       {/* Main navigation */}
       <MainNav>
         <MainNavContent>
-          <Logo href="#">
-            <LogoIcon>▲</LogoIcon>
-            <LogoText>Adventure Shop</LogoText>
-          </Logo>
+          {isMobile && <MobileMenuButton><FaBars /></MobileMenuButton>}
+          
+          <LogoWrapper>
+            <Logo href="#">
+              {/* Replace with your own logo */}
+              <LogoImage>AS</LogoImage>
+              <LogoText>Adventure Shop</LogoText>
+            </Logo>
+          </LogoWrapper>
+          
+          <NavIconsContainer>
+            <SearchContainer>
+              <SearchIconWrapper>
+                <FaSearch />
+              </SearchIconWrapper>
+              <SearchInput placeholder="Search products..." />
+            </SearchContainer>
+            
+            <NavIcon href="#">
+              <FaUser />
+            </NavIcon>
+            
+            <NavIcon href="#">
+              <FaHeart />
+              <IconBadge>2</IconBadge>
+            </NavIcon>
+            
+            <NavIcon href="#">
+              <FaShoppingCart />
+              <IconBadge>3</IconBadge>
+            </NavIcon>
+          </NavIconsContainer>
         </MainNavContent>
       </MainNav>
       

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { 
   FaMountain, 
@@ -10,7 +10,9 @@ import {
   FaFish,
   FaCompass,
   FaTools,
-  FaShoppingCart
+  FaShoppingCart,
+  FaChevronLeft,
+  FaChevronRight
 } from 'react-icons/fa';
 
 const BrandBarContainer = styled.div`
@@ -18,21 +20,65 @@ const BrandBarContainer = styled.div`
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
 `;
 
 const BrandBarContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+`;
+
+const ScrollButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &.left {
+    left: 5px;
+  }
+  
+  &.right {
+    right: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+    font-size: 0.75rem;
+  }
 `;
 
 const BrandList = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-x: auto;
   white-space: nowrap;
-  gap: 1.5rem;
-  padding: 0.25rem 0;
+  gap: 2.5rem;
+  padding: 0.5rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
   
   &::-webkit-scrollbar {
     height: 4px;
@@ -68,6 +114,8 @@ const BrandName = styled.span`
 `;
 
 const BrandsBar = () => {
+  const scrollContainerRef = useRef(null);
+  
   const brands = [
     { name: 'WILEY X', icon: FaMountain },
     { name: 'SHRED', icon: FaHiking },
@@ -80,11 +128,33 @@ const BrandsBar = () => {
     { name: 'ROTHCO', icon: FaTools },
     { name: 'HQ Tech', icon: FaShoppingCart }
   ];
+  
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -200,
+        behavior: 'smooth'
+      });
+    }
+  };
+  
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 200,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <BrandBarContainer>
       <BrandBarContent>
-        <BrandList>
+        <ScrollButton className="left" onClick={scrollLeft}>
+          <FaChevronLeft />
+        </ScrollButton>
+        
+        <BrandList ref={scrollContainerRef}>
           {brands.map((brand, index) => {
             const IconComponent = brand.icon;
             return (
@@ -97,6 +167,10 @@ const BrandsBar = () => {
             );
           })}
         </BrandList>
+        
+        <ScrollButton className="right" onClick={scrollRight}>
+          <FaChevronRight />
+        </ScrollButton>
       </BrandBarContent>
     </BrandBarContainer>
   );
