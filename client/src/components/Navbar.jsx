@@ -108,15 +108,14 @@ const NewsLinks = styled.div`
     background: #555;
     border-radius: 4px;
   }
+
+  /* Hide vertical scrollbar */
+  overflow-y: hidden;
 `;
 
 const NewsLinkItem = styled.div`
   position: relative;
   margin-right: 1.25rem;
-  
-  &:hover > div {
-    display: block;
-  }
 `;
 
 const NewsLink = styled.a`
@@ -149,7 +148,7 @@ const DropdownMenu = styled.div`
   border-radius: 0.25rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   min-width: 200px;
-  display: none;
+  display: ${props => props.$isOpen ? 'block' : 'none'};
   z-index: 100;
   padding: 0.5rem 0;
   animation: fadeIn 0.2s ease-in-out;
@@ -295,6 +294,7 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
+  min-width: ${props => props.$isExpanded ? '200px' : '24px'};
 `;
 
 const SearchInput = styled.input`
@@ -303,10 +303,10 @@ const SearchInput = styled.input`
   border-radius: 4px;
   padding: 0.5rem;
   padding-left: 2.5rem;
-  padding-right: ${props => props.isExpanded ? '2.5rem' : '0.5rem'};
+  padding-right: ${props => props.$isExpanded ? '2.5rem' : '0.5rem'};
   color: white;
-  width: ${props => props.isExpanded ? '200px' : '0'};
-  opacity: ${props => props.isExpanded ? '1' : '0'};
+  width: ${props => props.$isExpanded ? '200px' : '0'};
+  opacity: ${props => props.$isExpanded ? '1' : '0'};
   font-size: 0.875rem;
   transition: all 0.3s ease;
   position: absolute;
