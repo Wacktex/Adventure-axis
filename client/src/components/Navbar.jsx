@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BrandsBar from './BrandsBar';
-import { FaSearch, FaUser, FaShoppingCart, FaHeart, FaBars } from 'react-icons/fa';
+import { FaSearch, FaUser, FaShoppingCart, FaHeart, FaBars, FaShippingFast, FaTimes } from 'react-icons/fa';
 
 const NavContainer = styled.nav`
   width: 100%;
@@ -146,9 +146,17 @@ const MainNavContent = styled.div`
   }
 `;
 
+const LeftIconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+`;
+
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1;
 `;
 
 const Logo = styled.a`
@@ -156,12 +164,13 @@ const Logo = styled.a`
   font-weight: 700;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-family: 'Montserrat', sans-serif;
 `;
 
 const LogoImage = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,14 +178,9 @@ const LogoImage = styled.div`
   font-size: 1.5rem;
   border: 2px solid #ff5500;
   border-radius: 8px;
-  margin-right: 10px;
 `;
 
-const LogoText = styled.span`
-  margin-left: 0.5rem;
-`;
-
-const NavIconsContainer = styled.div`
+const RightIconsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -232,11 +236,7 @@ const SearchContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 1rem;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
+  transition: all 0.3s ease;
 `;
 
 const SearchInput = styled.input`
@@ -245,9 +245,15 @@ const SearchInput = styled.input`
   border-radius: 4px;
   padding: 0.5rem;
   padding-left: 2.5rem;
+  padding-right: ${props => props.isExpanded ? '2.5rem' : '0.5rem'};
   color: white;
-  width: 200px;
+  width: ${props => props.isExpanded ? '200px' : '0'};
+  opacity: ${props => props.isExpanded ? '1' : '0'};
   font-size: 0.875rem;
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 0;
+  top: 0;
   
   &::placeholder {
     color: #aaa;
@@ -261,15 +267,34 @@ const SearchInput = styled.input`
 
 const SearchIconWrapper = styled.span`
   position: absolute;
-  left: 0.75rem;
+  left: ${props => props.isExpanded ? '0.75rem' : 'auto'};
   color: #aaa;
   font-size: 1rem;
   display: flex;
   align-items: center;
+  z-index: 2;
+`;
+
+const SearchToggle = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  
+  &:hover {
+    color: #ff5500;
+  }
 `;
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [searchExpanded, setSearchExpanded] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -283,6 +308,10 @@ const Navbar = () => {
       window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
+
+  const toggleSearch = () => {
+    setSearchExpanded(!searchExpanded);
+  };
 
   // News ticker content
   const news = [
@@ -331,36 +360,52 @@ const Navbar = () => {
         <MainNavContent>
           {isMobile && <MobileMenuButton><FaBars /></MobileMenuButton>}
           
+          <LeftIconsContainer>
+            <NavIcon href="#" title="Order Tracking">
+              <FaShippingFast />
+            </NavIcon>
+            
+            <NavIcon href="#" title="Wishlist">
+              <FaHeart />
+              <IconBadge>2</IconBadge>
+            </NavIcon>
+          </LeftIconsContainer>
+          
           <LogoWrapper>
             <Logo href="#">
               {/* Replace with your own logo */}
               <LogoImage>AS</LogoImage>
-              <LogoText>Adventure Shop</LogoText>
             </Logo>
           </LogoWrapper>
           
-          <NavIconsContainer>
+          <RightIconsContainer>
             <SearchContainer>
-              <SearchIconWrapper>
-                <FaSearch />
-              </SearchIconWrapper>
-              <SearchInput placeholder="Search products..." />
+              {searchExpanded && (
+                <>
+                  <SearchIconWrapper isExpanded={searchExpanded}>
+                    <FaSearch />
+                  </SearchIconWrapper>
+                  <SearchInput 
+                    isExpanded={searchExpanded} 
+                    placeholder="Search products..." 
+                    autoFocus
+                  />
+                </>
+              )}
+              <SearchToggle onClick={toggleSearch}>
+                {searchExpanded ? <FaTimes /> : <FaSearch />}
+              </SearchToggle>
             </SearchContainer>
             
-            <NavIcon href="#">
+            <NavIcon href="#" title="My Account">
               <FaUser />
             </NavIcon>
             
-            <NavIcon href="#">
-              <FaHeart />
-              <IconBadge>2</IconBadge>
-            </NavIcon>
-            
-            <NavIcon href="#">
+            <NavIcon href="#" title="Cart">
               <FaShoppingCart />
               <IconBadge>3</IconBadge>
             </NavIcon>
-          </NavIconsContainer>
+          </RightIconsContainer>
         </MainNavContent>
       </MainNav>
       
