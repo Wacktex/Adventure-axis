@@ -1,0 +1,61 @@
+> **Generate Full React Frontend for Adventure Shop Homepage**
+>
+> I have a screenshot of my desired homepage for “Adventure Shop.” Please generate a complete React.js codebase using functional components and styled-components, with one file per component under `src/components/`. The structure should exactly match the screenshot (attached), and be fully responsive. Include imports, styled-component definitions, and JSX. Name and organize files as follows:
+>
+> 1. **`src/App.jsx`**
+>
+>    * Imports and renders: `<Navbar />`, `<Hero />`, `<BrandsBar />`, `<FeaturesGrid />`, `<InfoSection />`, `<Footer />`
+> 2. **`src/components/Navbar.jsx`**
+>
+>    * Top thin **News** bar with left-aligned links: “Water Sport Gear”, “Safety Rescue”, “Tactical Eye Wear”, “Footwear”, “Clothing”, “Camping & Outdoor”, “HeadQuish Technologies”, “Deals & Combos”, and a “Trending Products” button on the right in orange.
+>    * Below that, main nav with centered logo text “Adventure Shop” and beneath it a horizontal scrolling brand bar (WILEY X, SHRED, LAFUMA, MILLET, ALPS MOUNTAINEERING, PALM, PRINCETON TEC, CAMP, ROTHCO, HeadQuish Technologies).
+> 3. **`src/components/Hero.jsx`**
+>
+>    * Full-width background image of mountains, dark overlay.
+>    * Centered white heading “The Joys of the Journey” and subheading “Complete Outdoor Gear – 25+ Years of Innovation.”
+>    * A bright orange “Shop Now” button below the text.
+> 4. **`src/components/FeaturesGrid.jsx`**
+>
+>    * Six cards in two rows of three, each card with a white background, slight shadow, rounded corners, an image on top, and a caption below:
+>
+>      1. Life Jackets
+>      2. Rucksacks
+>      3. Tents
+>      4. Sleeping Bags
+>      5. Helmets
+>      6. Climbing Shoes
+> 5. **`src/components/InfoSection.jsx`**
+>
+>    * Three columns centered below the grid, each with bold heading and subtitle:
+>
+>      * “Complete Outdoor Shop” / “Top Global Brands”
+>      * “25+ Years of Innovation” / “Trusted by Adventurers”
+>      * “Building a Community” / “Join Our Adventure”
+> 6. **`src/components/Footer.jsx`**
+>
+>    * Dark background footer: four columns:
+>
+>      1. **About Us**: Our Story, Careers, Press
+>      2. **Customer Service**: Contact, FAQ, Returns
+>      3. **Legal**: Privacy Policy, Terms & Conditions
+>      4. **Connect**: social icons (Facebook, Twitter, Instagram) and an email newsletter input + subscribe button
+>    * Bottom center: “© 2025 Adventure Shop. All rights reserved.”
+>
+> **Styling Requirements**
+>
+> * Use styled-components throughout, with clean naming conventions.
+> * Site must be fully responsive:
+>
+>   * Collapse the top news links into a horizontal scroller on small screens.
+>   * Brand bar scrollable horizontally.
+>   * Features grid stacks to two columns on tablet, one column on mobile.
+>   * Footer columns stack vertically on narrow viewports.
+> * Use the exact color palette from the screenshot: black nav bars, white backgrounds for sections, #ff5500 (orange) for buttons and highlights, and #333/ #555 for text.
+> * Ensure proper spacing, consistent font sizes, and box-shadows as shown.
+>
+Finally:
+
+ Update `src/App.jsx` to import and render these components in order.
+ Provide a `package.json` snippet listing `react`, `react-dom`, and `styled-components`.
+ Include any necessary global styles (e.g. a `<GlobalStyle />` component in `src/GlobalStyle.jsx`).
+ Generate all code files in one response so I can copy them straight into my Replit project without errors.
