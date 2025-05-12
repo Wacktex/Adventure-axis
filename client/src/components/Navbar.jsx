@@ -9,6 +9,69 @@ const NavContainer = styled.nav`
   z-index: 50;
 `;
 
+// New trending products bar at the top
+const TrendingBar = styled.div`
+  background-color: #ff5500;
+  color: white;
+  padding: 0.4rem 1rem;
+`;
+
+const TrendingBarContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const NewsTickerWrapper = styled.div`
+  flex: 1;
+  overflow: hidden;
+  margin: 0 1.5rem;
+  position: relative;
+`;
+
+const NewsTicker = styled.div`
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: ticker 30s linear infinite;
+
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+`;
+
+const NewsItem = styled.span`
+  margin-right: 3rem;
+  position: relative;
+  
+  &:after {
+    content: '•';
+    margin-left: 1.5rem;
+  }
+`;
+
+const TrendingButton = styled.a`
+  background-color: black;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+  font-weight: 600;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+`;
+
 const NewsBar = styled.div`
   background-color: black;
   color: white;
@@ -54,20 +117,6 @@ const NewsLink = styled.a`
   
   &:hover {
     color: #ff5500;
-  }
-`;
-
-const TrendingButton = styled.a`
-  background-color: #ff5500;
-  color: white;
-  font-size: 0.875rem;
-  padding: 0.25rem 1rem;
-  border-radius: 0.25rem;
-  white-space: nowrap;
-  transition: background-color 0.2s;
-  
-  &:hover {
-    background-color: rgba(255, 85, 0, 0.9);
   }
 `;
 
@@ -119,8 +168,32 @@ const Navbar = () => {
     };
   }, []);
 
+  // News ticker content
+  const news = [
+    "25% Off on All Hiking Gear This Weekend!",
+    "New Waterproof Collection Available Now",
+    "Free Shipping on Orders Over $100",
+    "Join Our Adventure Club for Exclusive Deals",
+    "Limited Edition Mountain Gear Just Arrived"
+  ];
+
   return (
     <NavContainer>
+      {/* Trending Products bar */}
+      <TrendingBar>
+        <TrendingBarContent>
+          <div>Hot Deals</div>
+          <NewsTickerWrapper>
+            <NewsTicker>
+              {news.map((item, index) => (
+                <NewsItem key={index}>{item}</NewsItem>
+              ))}
+            </NewsTicker>
+          </NewsTickerWrapper>
+          <TrendingButton href="#">Trending Products</TrendingButton>
+        </TrendingBarContent>
+      </TrendingBar>
+      
       {/* News bar */}
       <NewsBar>
         <NewsBarContent>
@@ -134,7 +207,6 @@ const Navbar = () => {
             <NewsLink href="#">HeadQuish Technologies</NewsLink>
             <NewsLink href="#">Deals & Combos</NewsLink>
           </NewsLinks>
-          <TrendingButton href="#">Trending Products</TrendingButton>
         </NewsBarContent>
       </NewsBar>
       

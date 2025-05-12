@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
+  /* Note: Font imports are handled in index.html to avoid CSSOM issues */
   
   * {
     box-sizing: border-box;

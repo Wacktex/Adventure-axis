@@ -1,5 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import { 
+  SiNorthface, 
+  SiColumbia, 
+  SiPatagonia, 
+  SiSalomon, 
+  SiMarmot, 
+  SiNike, 
+  SiPuma,
+  SiAdidas,
+  SiNewbalance,
+  SiUnderarmour
+} from 'react-icons/si';
 
 const BrandBarContainer = styled.div`
   background-color: #f0f0f0;
@@ -36,24 +48,37 @@ const BrandLink = styled.a`
   color: #555555;
   font-weight: 600;
   transition: color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
   
   &:hover {
     color: #ff5500;
   }
 `;
 
+const BrandIcon = styled.div`
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+`;
+
+const BrandName = styled.span`
+  font-size: 0.7rem;
+`;
+
 const BrandsBar = () => {
   const brands = [
-    'WILEY X',
-    'SHRED',
-    'LAFUMA',
-    'MILLET',
-    'ALPS MOUNTAINEERING',
-    'PALM',
-    'PRINCETON TEC',
-    'CAMP',
-    'ROTHCO',
-    'HeadQuish Technologies'
+    { name: 'WILEY X', icon: SiNorthface },
+    { name: 'SHRED', icon: SiSalomon },
+    { name: 'LAFUMA', icon: SiPatagonia },
+    { name: 'MILLET', icon: SiNike },
+    { name: 'ALPS MTN', icon: SiNorthface },
+    { name: 'PALM', icon: SiMarmot },
+    { name: 'PRINCETON', icon: SiPuma },
+    { name: 'CAMP', icon: SiAdidas },
+    { name: 'ROTHCO', icon: SiNewbalance },
+    { name: 'HQ Tech', icon: SiUnderarmour }
   ];
 
   return (
@@ -61,7 +86,12 @@ const BrandsBar = () => {
       <BrandBarContent>
         <BrandList>
           {brands.map((brand, index) => (
-            <BrandLink key={index} href="#">{brand}</BrandLink>
+            <BrandLink key={index} href="#">
+              <BrandIcon>
+                <brand.icon />
+              </BrandIcon>
+              <BrandName>{brand.name}</BrandName>
+            </BrandLink>
           ))}
         </BrandList>
       </BrandBarContent>
